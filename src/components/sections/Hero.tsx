@@ -3,6 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Play, Sparkles } from "lucide-react";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 
@@ -11,6 +12,7 @@ const conversationBubbles = [
         position: "top-left",
         name: "Sarah K.",
         role: "Founder at TechStart",
+        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&h=100",
         quote:
             "Candidates wait 3 weeks for replies while I'm juggling everything. We're losing great talent.",
         delay: 0,
@@ -19,6 +21,7 @@ const conversationBubbles = [
         position: "top-right",
         name: "Rahul M.",
         role: "Hiring Manager at GrowthCo",
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100",
         quote:
             "Posted on LinkedIn. Got 200 applications. Skimmed 20. Hired on gut feeling. They quit in 2 months.",
         delay: 1.5,
@@ -27,6 +30,7 @@ const conversationBubbles = [
         position: "bottom-left",
         name: "Priya S.",
         role: "CEO at InnovateLabs",
+        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&h=100",
         quote:
             "I'm the CEO, product lead, AND now doing HR? There's zero time to read 200 resumes properly.",
         delay: 0.8,
@@ -35,6 +39,7 @@ const conversationBubbles = [
         position: "bottom-right",
         name: "Amit T.",
         role: "Head of HR at ScaleUp",
+        image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&h=100",
         quote:
             "Our best candidate accepted another offer while we were still scheduling interviews.",
         delay: 2.2,
@@ -58,6 +63,7 @@ const bubblePositions: Record<string, string> = {
 function ConversationBubble({
     name,
     role,
+    image,
     quote,
     position,
     delay,
@@ -87,10 +93,13 @@ function ConversationBubble({
                 {/* Card */}
                 <div className="relative bg-white/90 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl p-4 shadow-glass border border-white/40 dark:border-white/10 transition-all duration-500 group-hover:shadow-xl group-hover:border-accent-blue/20 dark:group-hover:border-accent-purple/20 group-hover:-translate-y-1">
                     <div className="flex items-start gap-3">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center flex-shrink-0 shadow-sm">
-                            <span className="text-white font-semibold text-xs">
-                                {name.charAt(0)}
-                            </span>
+                        <div className="relative w-8 h-8 rounded-full overflow-hidden flex-shrink-0 shadow-sm border border-white/50 dark:border-white/20">
+                            <Image
+                                src={image}
+                                alt={name}
+                                fill
+                                className="object-cover"
+                            />
                         </div>
                         <div className="min-w-0">
                             <p className="font-semibold text-gray-900 dark:text-gray-100 text-sm truncate">

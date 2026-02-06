@@ -7,13 +7,14 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Quote, Star } from "lucide-react";
 import { ImagesBadge } from "@/components/ui/images-badge";
 import { LinkPreview } from "@/components/ui/link-preview";
+import Image from "next/image";
 
 const testimonials = [
     {
         name: "Rahul Mehta",
         role: "Founder",
         company: "TechStart Solutions",
-        avatar: "RM",
+        image: "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?auto=format&fit=crop&w=100&h=100",
         quote:
             "We went from 6 weeks to hire a developer to just 10 days. The AI screening saved us countless hours and helped us find candidates we would have otherwise missed.",
         rating: 5,
@@ -23,7 +24,7 @@ const testimonials = [
         name: "Priya Sharma",
         role: "Head of HR",
         company: "InnovateLabs",
-        avatar: "PS",
+        image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=100&h=100",
         quote:
             "RecruiterAI transformed our hiring process. We now process 5x more applications with the same team. The quality of hires has improved dramatically.",
         rating: 5,
@@ -33,7 +34,7 @@ const testimonials = [
         name: "Amit Kumar",
         role: "CTO",
         company: "ScaleUp Technologies",
-        avatar: "AK",
+        image: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?auto=format&fit=crop&w=100&h=100",
         quote:
             "The automated interview scheduling alone saved us 20 hours per week. Our candidates love the quick response times, and we've seen a 40% improvement in offer acceptance.",
         rating: 5,
@@ -45,7 +46,7 @@ function TestimonialCard({
     name,
     role,
     company,
-    avatar,
+    image,
     quote,
     rating,
     color,
@@ -76,9 +77,14 @@ function TestimonialCard({
             {/* Author */}
             <div className="flex items-center gap-4">
                 <div
-                    className={`w-12 h-12 rounded-full bg-gradient-to-br ${color} flex items-center justify-center text-white font-bold text-lg`}
+                    className={`relative w-12 h-12 rounded-full overflow-hidden flex items-center justify-center border-2 border-white dark:border-white/10`}
                 >
-                    {avatar}
+                    <Image
+                        src={image}
+                        alt={name}
+                        fill
+                        className="object-cover"
+                    />
                 </div>
                 <div>
                     <p className="font-semibold text-gray-900 dark:text-white text-sm">
