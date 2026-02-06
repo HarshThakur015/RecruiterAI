@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+import { CardSpotlight } from "@/components/ui/card-spotlight";
 import {
     Zap,
     Clock,
@@ -193,30 +194,47 @@ export function ImpactResults() {
                     ))}
                 </div>
 
-                {/* Benefits list - REDESIGNED */}
-                <AnimatedSection delay={0.3}>
-                    <div className="bg-white dark:bg-dark-secondary-bg border border-gray-200 dark:border-gray-700 rounded-3xl p-8 md:p-12 shadow-card relative overflow-hidden">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-light-primary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
-                        <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent-purple/5 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none" />
+                {/* Benefits list - FLIP CARD DESIGN WITH SPOTLIGHT (BACK SIDE) */}
+                <AnimatedSection delay={0.3} className="pt-8 pb-8">
+                    <div className="group h-[380px] w-full max-w-6xl mx-auto [perspective:1000px] cursor-pointer">
+                        <div className="relative h-full w-full transition-all duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
 
-                        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center relative z-10">
-                            Everything You Need to{" "}
-                            <span className="bg-gradient-to-r from-light-primary to-accent-purple bg-clip-text text-transparent">
-                                Hire Better
-                            </span>
-                        </h3>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 relative z-10">
-                            {benefits.map((benefit, index) => (
-                                <div
-                                    key={index}
-                                    className="flex items-center gap-3 bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-xl p-4 hover:border-light-primary/30 transition-colors duration-300"
-                                >
-                                    <div className="w-8 h-8 rounded-full bg-light-primary/10 flex items-center justify-center flex-shrink-0">
-                                        <CheckCircle2 className="w-5 h-5 text-light-primary" />
+                            {/* Front Face - STANDARD LIGHT DESIGN */}
+                            <div className="absolute inset-0 h-full w-full [backface-visibility:hidden] rounded-3xl bg-white dark:bg-dark-secondary-bg border border-gray-200 dark:border-gray-700 shadow-card flex items-center justify-center p-6">
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-light-primary/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none" />
+                                <div className="absolute bottom-0 left-0 w-64 h-64 bg-accent-purple/5 rounded-full blur-3xl -ml-32 -mb-32 pointer-events-none" />
+
+                                <div className="text-center">
+                                    <div className="w-16 h-16 mx-auto bg-gradient-to-br from-light-primary/20 to-accent-purple/20 rounded-full flex items-center justify-center mb-4">
+                                        <CheckCircle2 className="w-8 h-8 text-light-primary" />
                                     </div>
-                                    <span className="text-gray-700 dark:text-gray-200 font-medium">{benefit}</span>
+                                    <h3 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white">
+                                        Everything You Need to <br />
+                                        <span className="bg-gradient-to-r from-light-primary to-accent-purple bg-clip-text text-transparent">
+                                            Hire Better
+                                        </span>
+                                    </h3>
+                                    <p className="mt-3 text-gray-500 dark:text-gray-400 font-medium tracking-wide uppercase text-xs">Hover to reveal benefits</p>
                                 </div>
-                            ))}
+                            </div>
+
+                            {/* Back Face - SPOTLIGHT DARK DESIGN */}
+                            <CardSpotlight className="absolute inset-0 h-full w-full [transform:rotateY(180deg)] [backface-visibility:hidden] rounded-3xl bg-black border border-neutral-800 shadow-card flex items-center justify-center p-8 md:p-10 z-20">
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full relative z-20">
+                                    {benefits.map((benefit, index) => (
+                                        <div
+                                            key={index}
+                                            className="flex items-center gap-4 bg-neutral-900/50 border border-neutral-800 rounded-xl p-5 hover:border-neutral-700 transition-colors duration-300 shadow-sm"
+                                        >
+                                            <div className="w-10 h-10 rounded-full bg-light-primary/20 flex items-center justify-center flex-shrink-0">
+                                                <CheckCircle2 className="w-5 h-5 text-light-primary" />
+                                            </div>
+                                            <span className="text-base text-neutral-200 font-bold">{benefit}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </CardSpotlight>
+
                         </div>
                     </div>
                 </AnimatedSection>
