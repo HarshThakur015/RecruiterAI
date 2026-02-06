@@ -45,14 +45,14 @@ const conversationBubbles = [
 const bubblePositions: Record<string, string> = {
     // Moved slightly down to frame the condensed content better
     "top-left":
-        "absolute top-[18%] left-[1%] xl:left-[2%] 2xl:left-[6%] w-[280px] xl:w-[340px]",
+        "absolute top-[18%] left-[1%] xl:left-[2%] 2xl:left-[6%] w-[240px] xl:w-[280px]",
     "top-right":
-        "absolute top-[18%] right-[1%] xl:right-[2%] 2xl:right-[6%] w-[280px] xl:w-[340px]",
+        "absolute top-[18%] right-[1%] xl:right-[2%] 2xl:right-[6%] w-[240px] xl:w-[280px]",
     // Pushed further to the side as requested
     "bottom-left":
-        "absolute bottom-[25%] left-[0.5%] xl:left-[1%] 2xl:left-[5%] w-[280px] xl:w-[340px]",
+        "absolute bottom-[25%] left-[0.5%] xl:left-[1%] 2xl:left-[5%] w-[240px] xl:w-[280px]",
     "bottom-right":
-        "absolute bottom-[25%] right-[0.5%] xl:right-[1%] 2xl:right-[5%] w-[280px] xl:w-[340px]",
+        "absolute bottom-[25%] right-[0.5%] xl:right-[1%] 2xl:right-[5%] w-[240px] xl:w-[280px]",
 };
 
 function ConversationBubble({
@@ -85,26 +85,26 @@ function ConversationBubble({
                 <div className="absolute inset-0 bg-gradient-to-br from-accent-blue/10 to-accent-purple/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                 {/* Card */}
-                <div className="relative bg-white/90 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl p-5 shadow-glass border border-white/40 dark:border-white/10 transition-all duration-500 group-hover:shadow-xl group-hover:border-accent-blue/20 dark:group-hover:border-accent-purple/20 group-hover:-translate-y-1">
-                    <div className="flex items-start gap-4">
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center flex-shrink-0 shadow-sm">
-                            <span className="text-white font-semibold text-sm">
+                <div className="relative bg-white/90 dark:bg-gray-900/80 backdrop-blur-md rounded-2xl p-4 shadow-glass border border-white/40 dark:border-white/10 transition-all duration-500 group-hover:shadow-xl group-hover:border-accent-blue/20 dark:group-hover:border-accent-purple/20 group-hover:-translate-y-1">
+                    <div className="flex items-start gap-3">
+                        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-accent-blue to-accent-purple flex items-center justify-center flex-shrink-0 shadow-sm">
+                            <span className="text-white font-semibold text-xs">
                                 {name.charAt(0)}
                             </span>
                         </div>
                         <div className="min-w-0">
-                            <p className="font-semibold text-gray-900 dark:text-gray-100 text-base truncate">
+                            <p className="font-semibold text-gray-900 dark:text-gray-100 text-sm truncate">
                                 {name}
                             </p>
-                            <p className="text-gray-500 dark:text-gray-400 text-sm truncate">{role}</p>
+                            <p className="text-gray-500 dark:text-gray-400 text-xs truncate">{role}</p>
                         </div>
                     </div>
-                    <p className="mt-4 text-gray-600 dark:text-gray-300 text-[15px] leading-relaxed">
+                    <p className="mt-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
                         &ldquo;{quote}&rdquo;
                     </p>
 
                     {/* Speech bubble pointer */}
-                    <div className={`absolute -bottom-2 ${isLeft ? 'left-8' : 'right-8'} w-4 h-4 bg-white/90 dark:bg-gray-900/80 border-r border-b border-white/40 dark:border-white/10 transform rotate-45`} />
+                    <div className={`absolute -bottom-2 ${isLeft ? 'left-8' : 'right-8'} w-3 h-3 bg-white/90 dark:bg-gray-900/80 border-r border-b border-white/40 dark:border-white/10 transform rotate-45`} />
                 </div>
             </motion.div>
         </motion.div>
@@ -179,12 +179,12 @@ export function Hero() {
                         transition={{ duration: 0.7, delay: 0.4 }}
                         className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10"
                     >
-                        <Button size="xl" className="w-full sm:w-auto min-w-[200px] shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-shadow">
+                        <Button size="lg" className="w-full sm:w-auto min-w-[200px] shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 transition-shadow">
                             <Sparkles className="mr-2 w-5 h-5" />
                             Start Hiring Smarter
                             <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </Button>
-                        <Button variant="glass" size="xl" className="w-full sm:w-auto min-w-[200px]">
+                        <Button variant="glass" size="lg" className="w-full sm:w-auto min-w-[200px]">
                             <Play className="mr-2 w-4 h-4 fill-current" />
                             See How It Works
                         </Button>

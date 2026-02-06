@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeProvider";
-import { Navbar } from "@/components/layout/Navbar";
-import { Footer } from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
     title: "RecruiterAI - AI-Powered Recruiting Automation Platform",
@@ -53,9 +51,7 @@ export default function RootLayout({
             </head>
             <body className="antialiased">
                 <ThemeProvider>
-                    <Navbar />
                     <main>{children}</main>
-                    <Footer />
                 </ThemeProvider>
             </body>
         </html>
