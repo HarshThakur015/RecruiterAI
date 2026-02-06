@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Quote, Star } from "lucide-react";
+import { ImagesBadge } from "@/components/ui/images-badge";
+import { LinkPreview } from "@/components/ui/link-preview";
 
 const testimonials = [
     {
@@ -50,60 +52,55 @@ function TestimonialCard({
     index,
 }: (typeof testimonials)[0] & { index: number }) {
     return (
-        <AnimatedSection delay={index * 0.15}>
-            <motion.div
-                whileHover={{ y: -5 }}
-                className="relative bg-white dark:bg-dark-secondary-bg rounded-3xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300 h-full border border-gray-100 dark:border-gray-700"
-            >
-                {/* Quote icon */}
-                <div className="absolute top-6 right-6 text-gray-200 dark:text-gray-700">
-                    <Quote className="w-12 h-12" />
-                </div>
+        <div className="relative bg-white dark:bg-dark-secondary-bg rounded-3xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300 h-full border border-gray-100 dark:border-gray-700 w-full">
+            {/* Quote icon */}
+            <div className="absolute top-6 right-6 text-gray-200 dark:text-gray-700">
+                <Quote className="w-12 h-12" />
+            </div>
 
-                {/* Rating */}
-                <div className="flex gap-1 mb-6">
-                    {[...Array(rating)].map((_, i) => (
-                        <Star
-                            key={i}
-                            className="w-5 h-5 text-yellow-400 fill-yellow-400"
-                        />
-                    ))}
-                </div>
+            {/* Rating */}
+            <div className="flex gap-1 mb-6">
+                {[...Array(rating)].map((_, i) => (
+                    <Star
+                        key={i}
+                        className="w-5 h-5 text-yellow-400 fill-yellow-400"
+                    />
+                ))}
+            </div>
 
-                {/* Quote */}
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8 relative z-10">
-                    "{quote}"
-                </p>
+            {/* Quote */}
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-8 relative z-10 text-sm md:text-base">
+                "{quote}"
+            </p>
 
-                {/* Author */}
-                <div className="flex items-center gap-4">
-                    <div
-                        className={`w-14 h-14 rounded-full bg-gradient-to-br ${color} flex items-center justify-center text-white font-bold text-lg`}
-                    >
-                        {avatar}
-                    </div>
-                    <div>
-                        <p className="font-semibold text-gray-900 dark:text-white">
-                            {name}
-                        </p>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
-                            {role} at {company}
-                        </p>
-                    </div>
-                </div>
-
-                {/* Decorative gradient */}
+            {/* Author */}
+            <div className="flex items-center gap-4">
                 <div
-                    className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${color} rounded-b-3xl`}
-                />
-            </motion.div>
-        </AnimatedSection>
+                    className={`w-12 h-12 rounded-full bg-gradient-to-br ${color} flex items-center justify-center text-white font-bold text-lg`}
+                >
+                    {avatar}
+                </div>
+                <div>
+                    <p className="font-semibold text-gray-900 dark:text-white text-sm">
+                        {name}
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">
+                        {role} at {company}
+                    </p>
+                </div>
+            </div>
+
+            {/* Decorative gradient */}
+            <div
+                className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${color} rounded-b-3xl`}
+            />
+        </div>
     );
 }
 
 export function Testimonials() {
     return (
-        <section id="testimonials" className="section-padding bg-gray-50 dark:bg-dark-secondary-bg/50">
+        <section id="testimonials" className="section-padding bg-gray-50 dark:bg-dark-secondary-bg/50 min-h-[800px]">
             <Container>
                 <AnimatedSection className="text-center mb-16">
                     <span className="inline-block px-4 py-2 bg-light-primary/10 text-light-primary rounded-full text-sm font-medium mb-4">
@@ -120,28 +117,39 @@ export function Testimonials() {
                     </p>
                 </AnimatedSection>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {testimonials.map((testimonial, index) => (
-                        <TestimonialCard key={index} {...testimonial} index={index} />
-                    ))}
+                {/* Replaced static grid with ImagesBadge */}
+                <div className="flex flex-col items-center justify-start pt-10 min-h-[500px]">
+                    <div className="relative w-full flex justify-center z-10">
+                        <ImagesBadge
+                            text="Hover to see who loves us"
+                            images={testimonials.map((testimonial, index) => (
+                                <TestimonialCard key={index} {...testimonial} index={index} />
+                            ))}
+                        />
+                    </div>
                 </div>
 
                 {/* Trust indicators */}
-                <AnimatedSection delay={0.5} className="mt-16 text-center">
+                <AnimatedSection delay={0.5} className="mt-2 text-center relative z-0">
                     <p className="text-gray-500 dark:text-gray-400 mb-8 font-medium">
                         Trusted by 500+ companies worldwide
                     </p>
-                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-                        {["TechCorp", "StartupX", "InnovateCo", "GrowthLabs", "ScaleForce"].map(
-                            (company) => (
-                                <span
-                                    key={company}
-                                    className="text-xl md:text-2xl font-bold text-gray-400 dark:text-gray-500 hover:text-gray-800 dark:hover:text-white transition-colors duration-300 cursor-default"
-                                >
-                                    {company}
-                                </span>
-                            )
-                        )}
+                    <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 relative px-4">
+                        <LinkPreview url="https://techcorp.com/" className="text-xl md:text-2xl font-bold text-gray-400 dark:text-gray-500 hover:text-gray-800 dark:hover:text-white transition-colors duration-300 cursor-pointer">
+                            TechCorp
+                        </LinkPreview>
+                        <LinkPreview url="https://www.spacex.com/" className="text-xl md:text-2xl font-bold text-gray-400 dark:text-gray-500 hover:text-gray-800 dark:hover:text-white transition-colors duration-300 cursor-pointer">
+                            SpaceX
+                        </LinkPreview>
+                        <LinkPreview url="https://stripe.com/in" className="text-xl md:text-2xl font-bold text-gray-400 dark:text-gray-500 hover:text-gray-800 dark:hover:text-white transition-colors duration-300 cursor-pointer">
+                            Stripe
+                        </LinkPreview>
+                        <LinkPreview url="https://growthlabs.agency/" className="text-xl md:text-2xl font-bold text-gray-400 dark:text-gray-500 hover:text-gray-800 dark:hover:text-white transition-colors duration-300 cursor-pointer">
+                            GrowthLabs
+                        </LinkPreview>
+                        <LinkPreview url="https://www.scaleforce.net/" className="text-xl md:text-2xl font-bold text-gray-400 dark:text-gray-500 hover:text-gray-800 dark:hover:text-white transition-colors duration-300 cursor-pointer">
+                            ScaleForce
+                        </LinkPreview>
                     </div>
                 </AnimatedSection>
             </Container>
